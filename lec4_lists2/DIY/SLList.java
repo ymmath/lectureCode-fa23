@@ -4,7 +4,7 @@ package lec4_lists2.DIY;
  *  in case you want to try to figure out how to write it yourself.
  */
 public class SLList {
-    public class IntNode {
+    public static class IntNode {
         public int item;
         public IntNode next;
         public IntNode(int i, IntNode n) {
@@ -32,11 +32,34 @@ public class SLList {
     /** Adds an item to the end of the list. */
     public void addLast(int x) {
         /* Your Code Here! */
+        IntNode p = first;
+
+        /* Move p until the end of the list */
+        while (p.next != null) {
+            p = p.next;
+        }
+        p.next = new IntNode(x, null);
     }
 
+    private static int size (IntNode p) {
+        if (p.next == null) {
+            return 1;
+        }
+        return 1 + size(p.next);
+    }
     /** Returns the number of items in the list using recursion. */
     public int size() {
         /* Your Code Here! */
-        return 0;
+        return size(first);
+    }
+
+    public static void main(String[] args) {
+        SLList L = new SLList(15);
+        L.addFirst(10);
+        L.addFirst(5);
+        System.out.println(L.getFirst());
+        System.out.println(L.size());
+        L.addLast(20);
+        System.out.println(L.size());
     }
 }
